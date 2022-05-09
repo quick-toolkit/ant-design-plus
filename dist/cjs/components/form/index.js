@@ -28,10 +28,10 @@ const _PlusForm = (0, react_1.forwardRef)((props, ref) => {
                     if (http && transformer) {
                         const res = await http.fetch(transformer.transform(model, value));
                         if (onSuccess) {
-                            await onSuccess(res);
+                            await onSuccess(res, value);
                         }
                         if (onResponse) {
-                            await onResponse(res);
+                            await onResponse(res, value);
                         }
                     }
                 }
@@ -45,7 +45,7 @@ const _PlusForm = (0, react_1.forwardRef)((props, ref) => {
                         }
                     }
                     if (onFail) {
-                        await onFail(e);
+                        await onFail(e, value);
                     }
                     if (utils_1.EnvUtils.isDev()) {
                         console.error(e);

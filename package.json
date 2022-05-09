@@ -1,6 +1,6 @@
 {
   "name": "@quick-toolkit/ant-design-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/cjs",
   "types": "dist/types",
   "description": "The ant-design-plus uses antd@4.17 developed a react component.",

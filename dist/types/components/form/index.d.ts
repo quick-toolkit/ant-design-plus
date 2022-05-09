@@ -35,7 +35,7 @@ export declare const PlusForm: PlusFormFC;
 export interface PlusFormProps<R = any, T extends object = {}> extends FormProps<T> {
     model: ClassConstructor<T>;
     onBeforeRequest?: (value: Partial<T>) => void | Promise<void>;
-    onResponse?: (res: AxiosResponse<R> | AxiosResponse<AxiosError>) => void | Promise<void>;
-    onSuccess?: (res: AxiosResponse<R>) => void | Promise<void>;
-    onFail?: (err: AxiosResponse<AxiosError>) => void | Promise<void>;
+    onResponse?: (res: AxiosResponse<R> | AxiosResponse<AxiosError>, req: Partial<T>) => void | Promise<void>;
+    onSuccess?: (res: AxiosResponse<R>, req: Partial<T>) => void | Promise<void>;
+    onFail?: (err: AxiosResponse<AxiosError>, req: Partial<T>) => void | Promise<void>;
 }

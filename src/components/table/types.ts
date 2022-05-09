@@ -41,12 +41,12 @@ import {
   RenderedCell,
 } from 'rc-table/lib/interface';
 
-declare interface PlusColumnGroupType<T extends {} = {}>
+export interface PlusColumnGroupType<T extends {} = {}>
   extends Omit<PlusColumnType<T>, 'dataIndex'> {
   children: PlusColumnsType<T>;
 }
 
-declare interface PlusColumnType<T extends {} = {}> {
+export interface PlusColumnType<T extends {} = {}> {
   title?: ColumnTitle<T>;
   hidden?: boolean;
   sorter?:
@@ -95,4 +95,4 @@ declare interface PlusColumnType<T extends {} = {}> {
   align?: AlignType;
 }
 
-declare type PlusColumnsType<T extends {} = {}> = PlusColumnType<T>[];
+export type PlusColumnsType<T extends {} = {}> = PlusColumnType<T>[];
