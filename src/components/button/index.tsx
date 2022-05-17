@@ -52,9 +52,7 @@ export const PlusButton = forwardRef<HTMLElement, PlusButtonProps>(
               console.log(e);
             }
           } finally {
-            if (loading) {
-              setLoading(false);
-            }
+            setLoading(false);
           }
         }}
       />

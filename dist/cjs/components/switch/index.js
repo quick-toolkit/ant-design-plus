@@ -24,9 +24,7 @@ exports.PlusSwitch = (0, react_1.forwardRef)((props, ref) => {
                 }
             }
             finally {
-                if (loading) {
-                    setLoading(false);
-                }
+                setLoading(false);
             }
         }, ...rest }));
 });

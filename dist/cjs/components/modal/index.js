@@ -35,9 +35,7 @@ function PlusModal(props) {
                 }
             }
             finally {
-                if (loading) {
-                    setLoading(false);
-                }
+                setLoading(false);
             }
         }, ...rest }));
 }

@@ -58,9 +58,7 @@ export const PlusSwitch = forwardRef<HTMLElement, PlusSwitchProps>(
               console.error(e);
             }
           } finally {
-            if (loading) {
-              setLoading(false);
-            }
+            setLoading(false);
           }
         }}
         {...rest}
