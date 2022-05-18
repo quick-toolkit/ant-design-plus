@@ -26,10 +26,12 @@ import { FormProps } from 'antd';
 import { AxiosError, AxiosResponse } from 'axios';
 import { ClassConstructor, MethodMirror, PropertyMirror } from '@quick-toolkit/class-mirror';
 import { PlusFormItem } from '../form-item';
+import { PlusFormList } from '../form-list';
 export declare const PlusFormContext: React.Context<Map<PropertyKey, PropertyMirror<any> | MethodMirror<any, any>>>;
 export declare type PlusFormFC = React.FC<PlusFormProps> & {
     Item: typeof PlusFormItem;
     Context: typeof PlusFormContext;
+    List: typeof PlusFormList;
 };
 export declare const PlusForm: PlusFormFC;
 export interface PlusFormProps<R = any, T extends object = {}> extends FormProps<T> {

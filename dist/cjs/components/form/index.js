@@ -13,6 +13,7 @@ const utils_1 = require("../../utils");
 const provider_1 = require("../provider");
 const form_item_1 = require("../form-item");
 const class_transformer_1 = require("@quick-toolkit/class-transformer");
+const form_list_1 = require("../form-list");
 const _PlusForm = (0, react_1.forwardRef)((props, ref) => {
     const { model, onFinish, onBeforeRequest, onResponse, onSuccess, onFail, className, ...rest } = props;
     const mirrors = (0, react_1.useMemo)(() => class_mirror_1.ClassMirror.reflect(model).getAllProperties(), [model]);
@@ -57,3 +58,4 @@ exports.PlusFormContext = (0, react_1.createContext)(new Map());
 exports.PlusForm = _PlusForm;
 exports.PlusForm.Item = form_item_1.PlusFormItem;
 exports.PlusForm.Context = exports.PlusFormContext;
+exports.PlusForm.List = form_list_1.PlusFormList;

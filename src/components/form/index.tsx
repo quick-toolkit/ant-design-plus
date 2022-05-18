@@ -36,6 +36,7 @@ import { EnvUtils } from '../../utils';
 import { PlusContext } from '../provider';
 import { PlusFormItem } from '../form-item';
 import { TransformerException } from '@quick-toolkit/class-transformer';
+import { PlusFormList } from '../form-list';
 
 const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
   const {
@@ -109,12 +110,14 @@ export const PlusFormContext = createContext<
 export type PlusFormFC = React.FC<PlusFormProps> & {
   Item: typeof PlusFormItem;
   Context: typeof PlusFormContext;
+  List: typeof PlusFormList;
 };
 
 export const PlusForm: PlusFormFC = _PlusForm;
 
 PlusForm.Item = PlusFormItem;
 PlusForm.Context = PlusFormContext;
+PlusForm.List = PlusFormList;
 
 export interface PlusFormProps<R = any, T extends object = {}>
   extends FormProps<T> {
