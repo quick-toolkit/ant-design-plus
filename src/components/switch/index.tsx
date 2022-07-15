@@ -23,7 +23,7 @@
  */
 
 import { Switch, SwitchProps } from 'antd';
-import { forwardRef, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { EnvUtils, TypeUtils } from '../../utils';
 
 /**
@@ -67,8 +67,8 @@ export const PlusSwitch = forwardRef<HTMLElement, PlusSwitchProps>(
   }
 );
 
-export interface PlusSwitchProps extends SwitchProps {
-  onChange?: (checked: boolean, event: MouseEvent) => Promise<void> | void;
+export interface PlusSwitchProps extends Omit<SwitchProps, 'onChange'> {
+  onChange?: (checked: any, event: MouseEvent) => Promise<void> | void;
   trueValue?: any;
   falseValue?: any;
 }

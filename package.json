@@ -1,6 +1,6 @@
 {
   "name": "@quick-toolkit/ant-design-plus",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "dist/cjs",
   "types": "dist/types",
   "description": "The ant-design-plus uses antd@4.17 developed a react component.",
@@ -29,8 +29,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/lodash": "^4.14.182",
-    "@quick-toolkit/class-mirror": "^1.0.0",
-    "@quick-toolkit/class-transformer": "^1.0.0",
+    "@quick-toolkit/class-mirror": "^1.0.3",
+    "@quick-toolkit/class-transformer": "^1.0.3",
     "@quick-toolkit/http": "^1.0.0",
     "@quick-toolkit/rc-router-dom": "^1.0.0",
     "@types/node": "^16.11.10",
