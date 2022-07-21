@@ -47,7 +47,7 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
     ...rest
   } = props;
   const columnsObj = useColumns(model, columns);
-  const [colSorts, setColSorts] = useState(window._.cloneDeep(columnsObj));
+  const [colSorts, setColSorts] = useState(cloneDeep(columnsObj));
   return (
     <Card className="plus-table">
       <Row className="plus-table-tools" align="middle" justify="space-between">
