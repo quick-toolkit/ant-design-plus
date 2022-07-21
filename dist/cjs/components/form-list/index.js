@@ -12,7 +12,7 @@ const class_mirror_1 = require("@quick-toolkit/class-mirror");
 const form_1 = require("../form");
 const PlusFormList = (props) => {
     const { model, name, children, renderAfter, renderBefore, index, renderItem, listClassName, itemClassName, listStyle, itemStyle, ...rest } = props;
-    const mirrors = (0, react_1.useMemo)(() => class_mirror_1.ClassMirror.reflect(model).getAllInstanceMembers(), [model]);
+    const mirrors = (0, react_1.useMemo)(() => class_mirror_1.ClassMirror.reflect(model).getAllProperties(), [model]);
     return ((0, jsx_runtime_1.jsx)(form_1.PlusForm.Context.Provider, { value: mirrors, children: (0, jsx_runtime_1.jsx)(antd_1.Form.List, { ...rest, name: index ? [index, name] : name, children: children
                 ? children
                 : (fields, operation, meta) => ((0, jsx_runtime_1.jsxs)("div", { className: (0, classnames_1.default)('mq-plus-form-list', listClassName), style: listStyle, children: [typeof renderBefore === 'function'

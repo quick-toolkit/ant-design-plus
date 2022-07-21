@@ -27,13 +27,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ColumnUtils = void 0;
-const lodash_1 = __importDefault(require("lodash"));
 const class_mirror_1 = require("@quick-toolkit/class-mirror");
 const http_1 = require("@quick-toolkit/http");
+const lodash_clonedeep_1 = __importDefault(require("lodash.clonedeep"));
 const locales = __importStar(require("../../locales"));
 class ColumnUtils {
     static parse(model, columns = [], language = 'zh_CN') {
-        return ColumnUtils.setTitles(lodash_1.default.cloneDeep(columns), class_mirror_1.ClassMirror.reflect(model).getAllProperties(), language);
+        return ColumnUtils.setTitles((0, lodash_clonedeep_1.default)(columns), class_mirror_1.ClassMirror.reflect(model).getAllProperties(), language);
     }
     static setTitles(columns, allProperties, language) {
         columns.forEach((column) => {

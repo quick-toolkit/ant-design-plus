@@ -21,14 +21,14 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/// <reference types="react" />
 import { SwitchProps } from 'antd';
+import React from 'react';
 /**
  * @component PlusSwitch
  */
-export declare const PlusSwitch: import("react").ForwardRefExoticComponent<PlusSwitchProps & import("react").RefAttributes<HTMLElement>>;
-export interface PlusSwitchProps extends SwitchProps {
-    onChange?: (checked: boolean, event: MouseEvent) => Promise<void> | void;
+export declare const PlusSwitch: React.ForwardRefExoticComponent<PlusSwitchProps & React.RefAttributes<HTMLElement>>;
+export interface PlusSwitchProps extends Omit<SwitchProps, 'onChange'> {
+    onChange?: (checked: any, event: MouseEvent) => Promise<void> | void;
     trueValue?: any;
     falseValue?: any;
 }

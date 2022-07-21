@@ -20,7 +20,6 @@
  * SOFTWARE.
  */
 
-import _ from 'lodash';
 import { ReactNode, useState } from 'react';
 import { Button, Card, Row, Space, Table, TableProps } from 'antd';
 import { ClassConstructor } from '@quick-toolkit/class-mirror';
@@ -30,6 +29,7 @@ import { PlusColumnsType } from './types';
 import { SettingPopover } from './setting-popover';
 import { useColumns } from './use-columns';
 import { ColumnUtils } from './utils';
+import cloneDeep from 'lodash.clonedeep';
 
 /**
  * Table component
@@ -47,7 +47,7 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
     ...rest
   } = props;
   const columnsObj = useColumns(model, columns);
-  const [colSorts, setColSorts] = useState(_.cloneDeep(columnsObj));
+  const [colSorts, setColSorts] = useState(window._.cloneDeep(columnsObj));
   return (
     <Card className="plus-table">
       <Row className="plus-table-tools" align="middle" justify="space-between">
@@ -62,7 +62,7 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
           <SettingPopover
             columns={colSorts}
             onChange={(v) => setColSorts(v)}
-            onReset={() => setColSorts(_.cloneDeep(columnsObj))}
+            onReset={() => setColSorts(cloneDeep(columnsObj))}
           />
         </Space>
       </Row>

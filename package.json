@@ -1,6 +1,6 @@
 {
   "name": "@quick-toolkit/ant-design-plus",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "dist/cjs",
   "types": "dist/types",
   "description": "The ant-design-plus uses antd@4.17 developed a react component.",
@@ -28,7 +28,6 @@
   "author": "YunlongRan<549510622@qq.com>",
   "license": "MIT",
   "devDependencies": {
-    "@types/lodash": "^4.14.182",
     "@quick-toolkit/class-mirror": "^1.0.3",
     "@quick-toolkit/class-transformer": "^1.0.3",
     "@quick-toolkit/http": "^1.0.0",
@@ -45,7 +44,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "less": "^4.1.2",
-    "lodash": "^4.17.21",
     "prettier": "^2.4.1",
     "react": "^17.0.2",
     "react-redux": "^7.2.6",
@@ -57,5 +55,9 @@
   },
   "engines": {
     "yarn": ">=1.4.0"
+  },
+  "dependencies": {
+    "@types/lodash.clonedeep": "^4.5.7",
+    "lodash.clonedeep": "^4.5.0"
   }
 }

@@ -20,13 +20,13 @@
  * SOFTWARE.
  */
 
-import _ from 'lodash';
 import {
   ClassConstructor,
   ClassMirror,
   PropertyMirror,
 } from '@quick-toolkit/class-mirror';
 import { ApiPropertyDecorate } from '@quick-toolkit/http';
+import cloneDeep from 'lodash.clonedeep';
 import { PlusColumnsType, PlusColumnType } from '../../types';
 import * as locales from '../../locales';
 
@@ -46,7 +46,7 @@ export class ColumnUtils {
     language: LanguageKeys = 'zh_CN'
   ): PlusColumnsType<T> {
     return ColumnUtils.setTitles(
-      _.cloneDeep(columns as any),
+      cloneDeep(columns as any),
       ClassMirror.reflect(model).getAllProperties(),
       language as any
     );

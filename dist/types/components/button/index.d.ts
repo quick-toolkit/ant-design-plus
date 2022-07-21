@@ -21,9 +21,10 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-/// <reference types="react" />
+import React from 'react';
 import { ButtonProps } from 'antd';
-export declare const PlusButton: import("react").ForwardRefExoticComponent<PlusButtonProps & import("react").RefAttributes<HTMLElement>>;
-export interface PlusButtonProps extends ButtonProps {
+export declare const PlusButton: React.ForwardRefExoticComponent<PlusButtonProps & React.RefAttributes<HTMLElement>>;
+export interface PlusButtonProps extends Omit<ButtonProps, 'onClick'> {
+    onClick: (e: React.MouseEvent<HTMLElement, MouseEvent>) => void | Promise<void>;
     onClickError?: (error: any) => void;
 }
