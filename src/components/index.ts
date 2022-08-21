@@ -24,6 +24,7 @@
 /// 语言包目录 locales
 
 export * from './button';
+export * from './card';
 export * from './form';
 export * from './form-item';
 export * from './form-list';

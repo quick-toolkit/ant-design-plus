@@ -1,6 +1,6 @@
 # ant-design-plus
 
-The `ant-design-plus` uses `ant@4.17` developed a react component.
+The `ant-design-plus` uses `ant@4.22` developed a react component.
 
 ## Installing
 
@@ -11,8 +11,7 @@ npm i antd @quick-toolkit/rc-router-dom @quick-toolkit/class-decorator @quick-to
 yarn add @quick-toolkit/rc-router-dom @quick-toolkit/class-decorator @quick-toolkit/class-transformer @quick-toolkit/http @quick-toolkit/ant-design-plus
 ```
 
-[@quick-toolkit/rc-router-dom](https://quick-toolkit.github.io/rc-router-dom/)
-提供路由解析和提供路由的上下文信息， [@quick-toolkit/class-decorator](https://quick-toolkit.github.io/class-decorator/)
+[@quick-toolkit/class-mirror](https://quick-toolkit.github.io/class-decorator/)
 提供类装饰器映射，[@quick-toolkit/class-transformer](https://quick-toolkit.github.io/class-transformer/) 提供实例转换功能，
 [@quick-toolkit/http](https://quick-toolkit.github.io/http/) 提供在发起http请求时根据装饰器注解的信息自动请求
 

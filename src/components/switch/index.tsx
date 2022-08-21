@@ -23,7 +23,7 @@
  */
 
 import { Switch, SwitchProps } from 'antd';
-import React, { forwardRef, useState } from 'react';
+import React, { forwardRef, useState, MouseEvent } from 'react';
 import { EnvUtils, TypeUtils } from '../../utils';
 
 /**
