@@ -36,6 +36,7 @@ import { EnvUtils } from '../../utils';
 import { PlusContext } from '../provider';
 import { PlusFormItem } from '../form-item';
 import { TransformerException } from '@quick-toolkit/class-transformer';
+import { PlusFormList } from '../form-list';
 
 const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
   const {
@@ -73,10 +74,10 @@ const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
             if (http && transformer) {
               const res = await http.fetch(transformer.transform(model, value));
               if (onSuccess) {
-                await onSuccess(res);
+                await onSuccess(res, value);
               }
               if (onResponse) {
-                await onResponse(res);
+                await onResponse(res, value);
               }
             }
           } catch (e) {
@@ -89,7 +90,7 @@ const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
               }
             }
             if (onFail) {
-              await onFail(e as any);
+              await onFail(e as any, value);
             }
             if (EnvUtils.isDev()) {
               console.error(e);
@@ -109,20 +110,26 @@ export const PlusFormContext = createContext<
 export type PlusFormFC = React.FC<PlusFormProps> & {
   Item: typeof PlusFormItem;
   Context: typeof PlusFormContext;
+  List: typeof PlusFormList;
 };
 
 export const PlusForm: PlusFormFC = _PlusForm;
 
 PlusForm.Item = PlusFormItem;
 PlusForm.Context = PlusFormContext;
+PlusForm.List = PlusFormList;
 
 export interface PlusFormProps<R = any, T extends object = {}>
   extends FormProps<T> {
   model: ClassConstructor<T>;
   onBeforeRequest?: (value: Partial<T>) => void | Promise<void>;
   onResponse?: (
-    res: AxiosResponse<R> | AxiosResponse<AxiosError>
+    res: AxiosResponse<R> | AxiosResponse<AxiosError>,
+    req: Partial<T>
   ) => void | Promise<void>;
-  onSuccess?: (res: AxiosResponse<R>) => void | Promise<void>;
-  onFail?: (err: AxiosResponse<AxiosError>) => void | Promise<void>;
+  onSuccess?: (res: AxiosResponse<R>, req: Partial<T>) => void | Promise<void>;
+  onFail?: (
+    err: AxiosResponse<AxiosError>,
+    req: Partial<T>
+  ) => void | Promise<void>;
 }

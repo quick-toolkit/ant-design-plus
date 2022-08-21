@@ -20,8 +20,7 @@
  * SOFTWARE.
  */
 
-import _ from 'lodash';
-import { ReactNode, useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import { Button, Card, Row, Space, Table, TableProps } from 'antd';
 import { ClassConstructor } from '@quick-toolkit/class-mirror';
 import { ReloadOutlined } from '@ant-design/icons';
@@ -30,6 +29,7 @@ import { PlusColumnsType } from './types';
 import { SettingPopover } from './setting-popover';
 import { useColumns } from './use-columns';
 import { ColumnUtils } from './utils';
+import cloneDeep from 'lodash.clonedeep';
 
 /**
  * Table component
@@ -44,45 +44,58 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
     beforeTools,
     onReload,
     afterTools,
+    noTools = false,
+    noStyle = false,
+    loading,
     ...rest
   } = props;
   const columnsObj = useColumns(model, columns);
-  const [colSorts, setColSorts] = useState(_.cloneDeep(columnsObj));
-  return (
-    <Card className="plus-table">
-      <Row className="plus-table-tools" align="middle" justify="space-between">
-        <div>
-          <Space>{beforeTools}</Space>
-        </div>
-        <Space>
-          {afterTools}
-          {typeof onReload === 'function' && (
-            <Button icon={<ReloadOutlined />} onClick={onReload} />
-          )}
-          <SettingPopover
-            columns={colSorts}
-            onChange={(v) => setColSorts(v)}
-            onReset={() => setColSorts(_.cloneDeep(columnsObj))}
-          />
-        </Space>
-      </Row>
-      <Table
-        size={size || 'small'}
-        columns={
-          ColumnUtils.filter(colSorts).map((x) => {
-            const find = columnsObj.find((o) => o.dataIndex === x.dataIndex);
-            return {
-              ...x,
-              ...find,
-              hidden: x.hidden,
-            };
-          }) as any
-        }
-        rowKey="id"
-        {...rest}
-      />
-    </Card>
-  );
+  const [colSorts, setColSorts] = useState(cloneDeep(columnsObj));
+  return React.createElement(noStyle ? 'div' : Card, {
+    className: 'plus-table',
+    loading: Boolean(loading),
+    children: (
+      <>
+        {!noTools && (
+          <Row
+            className="plus-table-tools"
+            align="middle"
+            justify="space-between"
+          >
+            <div>
+              <Space>{beforeTools}</Space>
+            </div>
+            <Space>
+              {afterTools}
+              {typeof onReload === 'function' && (
+                <Button icon={<ReloadOutlined />} onClick={onReload} />
+              )}
+              <SettingPopover
+                columns={colSorts}
+                onChange={(v) => setColSorts(v)}
+                onReset={() => setColSorts(cloneDeep(columnsObj))}
+              />
+            </Space>
+          </Row>
+        )}
+        <Table
+          size={size || 'small'}
+          columns={
+            ColumnUtils.filter(colSorts).map((x) => {
+              const find = columnsObj.find((o) => o.dataIndex === x.dataIndex);
+              return {
+                ...x,
+                ...find,
+                hidden: x.hidden,
+              };
+            }) as any
+          }
+          rowKey="id"
+          {...rest}
+        />
+      </>
+    ),
+  });
 }
 
 export interface PlusTableProps<T> extends Omit<TableProps<T>, 'columns'> {
@@ -91,4 +104,6 @@ export interface PlusTableProps<T> extends Omit<TableProps<T>, 'columns'> {
   beforeTools?: ReactNode;
   afterTools?: ReactNode;
   onReload?: () => void;
+  noStyle?: boolean;
+  noTools?: boolean;
 }

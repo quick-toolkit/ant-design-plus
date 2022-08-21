@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-import { forwardRef, useState } from 'react';
+import React, { forwardRef, useState } from 'react';
 import { Button, ButtonProps } from 'antd';
 import { EnvUtils, TypeUtils } from '../../utils';
 
@@ -38,7 +38,7 @@ export const PlusButton = forwardRef<HTMLElement, PlusButtonProps>(
         onClick={async (...args) => {
           try {
             if (typeof onClick === 'function') {
-              const res = onClick(...args) as Promise<void> | void;
+              const res = onClick(...args);
               if (TypeUtils.isPromise(res)) {
                 setLoading(true);
                 await res;
@@ -52,9 +52,7 @@ export const PlusButton = forwardRef<HTMLElement, PlusButtonProps>(
               console.log(e);
             }
           } finally {
-            if (loading) {
-              setLoading(false);
-            }
+            setLoading(false);
           }
         }}
       />
@@ -62,6 +60,9 @@ export const PlusButton = forwardRef<HTMLElement, PlusButtonProps>(
   }
 );
 
-export interface PlusButtonProps extends ButtonProps {
+export interface PlusButtonProps extends Omit<ButtonProps, 'onClick'> {
+  onClick: (
+    e: React.MouseEvent<HTMLElement, MouseEvent>
+  ) => void | Promise<void>;
   onClickError?: (error: any) => void;
 }

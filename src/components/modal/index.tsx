@@ -68,9 +68,7 @@ export function PlusModal(props: PlusModalProps) {
             console.error(e);
           }
         } finally {
-          if (loading) {
-            setLoading(false);
-          }
+          setLoading(false);
         }
       }}
       {...rest}
