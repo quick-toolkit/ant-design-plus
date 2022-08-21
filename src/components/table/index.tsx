@@ -79,6 +79,7 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
           </Row>
         )}
         <Table
+          loading={loading}
           size={size || 'small'}
           columns={
             ColumnUtils.filter(colSorts).map((x) => {
