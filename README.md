@@ -6,9 +6,9 @@ The `ant-design-plus` uses `ant@4.22` developed a react component.
 
 ```shell
 # ant库
-npm i antd @quick-toolkit/rc-router-dom @quick-toolkit/class-decorator @quick-toolkit/class-transformer @quick-toolkit/http @quick-toolkit/ant-design-plus
+npm i antd @quick-toolkit/react-router @quick-toolkit/class-mirror @quick-toolkit/class-transformer @quick-toolkit/http @quick-toolkit/ant-design-plus
 #or
-yarn add @quick-toolkit/rc-router-dom @quick-toolkit/class-decorator @quick-toolkit/class-transformer @quick-toolkit/http @quick-toolkit/ant-design-plus
+yarn add @quick-toolkit/react-router @quick-toolkit/class-mirror @quick-toolkit/class-transformer @quick-toolkit/http @quick-toolkit/ant-design-plus
 ```
 
 [@quick-toolkit/class-mirror](https://quick-toolkit.github.io/class-decorator/)
