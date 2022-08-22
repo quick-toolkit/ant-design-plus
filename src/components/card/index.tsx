@@ -9,6 +9,7 @@ import { ReactNode } from 'react';
  */
 export function PlusCard<T>(props: PlusCardProps<T>) {
   const { response, children, getResultProps, ...rest } = props;
+
   if (response) {
     switch (response.status) {
       case 200:
@@ -48,11 +49,11 @@ export function PlusCard<T>(props: PlusCardProps<T>) {
         );
     }
   }
-  return <Card />;
+  return <Card {...rest} children={children(undefined)} />;
 }
 
 export interface PlusCardProps<T> extends Omit<CardProps, 'children'> {
   response?: AxiosResponse<T>;
-  children: (value: T) => ReactNode;
+  children: (value?: T) => ReactNode;
   getResultProps?: (code: number) => ResultProps;
 }

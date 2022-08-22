@@ -17,6 +17,6 @@ function PlusCard(props) {
                 return ((0, jsx_runtime_1.jsx)(antd_1.Card, { ...rest, children: (0, jsx_runtime_1.jsx)(antd_1.Result, { title: "500", subTitle: "Internal server error", ...(getResultProps ? getResultProps(response.status) : {}), status: 500 }) }));
         }
     }
-    return (0, jsx_runtime_1.jsx)(antd_1.Card, {});
+    return (0, jsx_runtime_1.jsx)(antd_1.Card, { ...rest, children: children(undefined) });
 }
 exports.PlusCard = PlusCard;

@@ -9,6 +9,6 @@ import { ReactNode } from 'react';
 export declare function PlusCard<T>(props: PlusCardProps<T>): JSX.Element;
 export interface PlusCardProps<T> extends Omit<CardProps, 'children'> {
     response?: AxiosResponse<T>;
-    children: (value: T) => ReactNode;
+    children: (value?: T) => ReactNode;
     getResultProps?: (code: number) => ResultProps;
 }

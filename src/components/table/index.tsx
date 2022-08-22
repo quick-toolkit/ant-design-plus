@@ -19,8 +19,8 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
-
-import React, { ReactNode, useState } from 'react';
+import cloneDeep from 'lodash.clonedeep';
+import React, { ReactNode, useMemo, useState } from 'react';
 import { Button, Card, Row, Space, Table, TableProps } from 'antd';
 import { ClassConstructor } from '@quick-toolkit/class-mirror';
 import { ReloadOutlined } from '@ant-design/icons';
@@ -29,8 +29,6 @@ import { PlusColumnsType } from './types';
 import { SettingPopover } from './setting-popover';
 import { useColumns } from './use-columns';
 import { ColumnUtils } from './utils';
-import cloneDeep from 'lodash.clonedeep';
-
 /**
  * Table component
  * @param props
@@ -46,15 +44,13 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
     afterTools,
     noTools = false,
     noStyle = false,
-    loading,
     ...rest
   } = props;
   const columnsObj = useColumns(model, columns);
   const [colSorts, setColSorts] = useState(cloneDeep(columnsObj));
-  return React.createElement(noStyle ? 'div' : Card, {
-    className: 'plus-table',
-    loading: Boolean(loading),
-    children: (
+
+  const children = useMemo(
+    () => (
       <>
         {!noTools && (
           <Row
@@ -79,7 +75,6 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
           </Row>
         )}
         <Table
-          loading={loading}
           size={size || 'small'}
           columns={
             ColumnUtils.filter(colSorts).map((x) => {
@@ -96,6 +91,22 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
         />
       </>
     ),
+    [
+      afterTools,
+      beforeTools,
+      colSorts,
+      columnsObj,
+      noTools,
+      onReload,
+      rest,
+      size,
+    ]
+  );
+
+  return React.createElement(noStyle ? 'div' : Card, {
+    className: 'plus-table',
+    loading: Boolean(rest.loading),
+    children,
   });
 }
 
