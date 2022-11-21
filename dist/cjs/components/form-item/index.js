@@ -22,6 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -38,11 +49,11 @@ const locales_1 = require("../../locales");
 const PlusFormItem = (props) => {
     const mirrorMap = (0, react_1.useContext)(form_1.PlusFormContext);
     const { locale = locales_1.zh_CN, antLocale } = (0, react_1.useContext)(provider_1.PlusContext);
-    const { name, index, label, hidden, rules = [], dependencies, shouldUpdate, children, ...rest } = props;
+    const { name, index, label, hidden, rules = [], dependencies, shouldUpdate, children } = props, rest = __rest(props, ["name", "index", "label", "hidden", "rules", "dependencies", "shouldUpdate", "children"]);
     const child = (0, react_1.useMemo)(() => shouldUpdate || (Array.isArray(dependencies) && dependencies.length)
         ? children
         : react_1.default.Children.only(children), [children, shouldUpdate, dependencies]);
-    const { placeholder, ...options } = (0, react_1.useMemo)(() => {
+    const _a = (0, react_1.useMemo)(() => {
         const newProps = {
             name,
             rules,
@@ -96,11 +107,11 @@ const PlusFormItem = (props) => {
             }
         }
         return newProps;
-    }, [locale.language, name, rules, label, mirrorMap, hidden, antLocale]);
-    return ((0, jsx_runtime_1.jsx)(antd_1.Form.Item, { ...rest, ...options, hidden: hidden, shouldUpdate: shouldUpdate, dependencies: dependencies, name: typeof index === 'number' && name ? [index, name] : name, className: (0, classnames_1.default)('mq-plus-form-item', props.className), children: shouldUpdate
+    }, [locale.language, name, rules, label, mirrorMap, hidden, antLocale]), { placeholder } = _a, options = __rest(_a, ["placeholder"]);
+    return ((0, jsx_runtime_1.jsx)(antd_1.Form.Item, Object.assign({}, rest, options, { hidden: hidden, shouldUpdate: shouldUpdate, dependencies: dependencies, name: typeof index === 'number' && name ? [index, name] : name, className: (0, classnames_1.default)('mq-plus-form-item', props.className), children: shouldUpdate
             ? child
             : (0, react_1.cloneElement)(child, {
                 placeholder,
-            }) }));
+            }) })));
 };
 exports.PlusFormItem = PlusFormItem;

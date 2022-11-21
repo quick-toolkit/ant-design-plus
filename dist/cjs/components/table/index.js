@@ -22,6 +22,17 @@ var __importStar = (this && this.__importStar) || function (mod) {
     __setModuleDefault(result, mod);
     return result;
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -36,17 +47,13 @@ const setting_popover_1 = require("./setting-popover");
 const use_columns_1 = require("./use-columns");
 const utils_1 = require("./utils");
 function PlusTable(props) {
-    const { model, columns = [], size, beforeTools, onReload, afterTools, noTools = false, noStyle = false, ...rest } = props;
+    const { model, columns = [], size, beforeTools, onReload, afterTools, noTools = false, noStyle = false } = props, rest = __rest(props, ["model", "columns", "size", "beforeTools", "onReload", "afterTools", "noTools", "noStyle"]);
     const columnsObj = (0, use_columns_1.useColumns)(model, columns);
     const [colSorts, setColSorts] = (0, react_1.useState)((0, lodash_clonedeep_1.default)(columnsObj));
-    const children = (0, react_1.useMemo)(() => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [!noTools && ((0, jsx_runtime_1.jsxs)(antd_1.Row, { className: "plus-table-tools", align: "middle", justify: "space-between", children: [(0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(antd_1.Space, { children: beforeTools }) }), (0, jsx_runtime_1.jsxs)(antd_1.Space, { children: [afterTools, typeof onReload === 'function' && ((0, jsx_runtime_1.jsx)(antd_1.Button, { icon: (0, jsx_runtime_1.jsx)(icons_1.ReloadOutlined, {}), onClick: onReload })), (0, jsx_runtime_1.jsx)(setting_popover_1.SettingPopover, { columns: colSorts, onChange: (v) => setColSorts(v), onReset: () => setColSorts((0, lodash_clonedeep_1.default)(columnsObj)) })] })] })), (0, jsx_runtime_1.jsx)(antd_1.Table, { size: size || 'small', columns: utils_1.ColumnUtils.filter(colSorts).map((x) => {
+    const children = (0, react_1.useMemo)(() => ((0, jsx_runtime_1.jsxs)(jsx_runtime_1.Fragment, { children: [!noTools && ((0, jsx_runtime_1.jsxs)(antd_1.Row, Object.assign({ className: "plus-table-tools", align: "middle", justify: "space-between" }, { children: [(0, jsx_runtime_1.jsx)("div", { children: (0, jsx_runtime_1.jsx)(antd_1.Space, { children: beforeTools }) }), (0, jsx_runtime_1.jsxs)(antd_1.Space, { children: [afterTools, typeof onReload === 'function' && ((0, jsx_runtime_1.jsx)(antd_1.Button, { icon: (0, jsx_runtime_1.jsx)(icons_1.ReloadOutlined, {}), onClick: onReload })), (0, jsx_runtime_1.jsx)(setting_popover_1.SettingPopover, { columns: colSorts, onChange: (v) => setColSorts(v), onReset: () => setColSorts((0, lodash_clonedeep_1.default)(columnsObj)) })] })] }))), (0, jsx_runtime_1.jsx)(antd_1.Table, Object.assign({ size: size || 'small', columns: utils_1.ColumnUtils.filter(colSorts).map((x) => {
                     const find = columnsObj.find((o) => o.dataIndex === x.dataIndex);
-                    return {
-                        ...x,
-                        ...find,
-                        hidden: x.hidden,
-                    };
-                }), rowKey: "id", ...rest })] })), [
+                    return Object.assign(Object.assign(Object.assign({}, x), find), { hidden: x.hidden });
+                }), rowKey: "id" }, rest))] })), [
         afterTools,
         beforeTools,
         colSorts,

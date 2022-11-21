@@ -37,7 +37,7 @@ function SettingPopover(props) {
     const checkedKeys = utils_1.ColumnUtils.getCheckedKeys(columns);
     const locale = (0, hooks_1.usePlusLocale)();
     const LANGUAGE = (0, react_1.useMemo)(() => locales[locale.language], [locale.language]);
-    return ((0, jsx_runtime_1.jsx)(antd_1.Popover, { title: (0, jsx_runtime_1.jsxs)(antd_1.Row, { justify: "space-between", align: "middle", children: [(0, jsx_runtime_1.jsx)(antd_1.Space, { children: (0, jsx_runtime_1.jsx)(antd_1.Checkbox, { indeterminate: checkedKeys.length > 1 && checkedKeys.length !== columns.length, checked: columns.length > 0 && checkedKeys.length === columns.length, onChange: (e) => {
+    return ((0, jsx_runtime_1.jsx)(antd_1.Popover, Object.assign({ title: (0, jsx_runtime_1.jsxs)(antd_1.Row, Object.assign({ justify: "space-between", align: "middle" }, { children: [(0, jsx_runtime_1.jsx)(antd_1.Space, { children: (0, jsx_runtime_1.jsx)(antd_1.Checkbox, Object.assign({ indeterminate: checkedKeys.length > 1 && checkedKeys.length !== columns.length, checked: columns.length > 0 && checkedKeys.length === columns.length, onChange: (e) => {
                             if (e.target.checked) {
                                 onChange(columns.map((o) => {
                                     o.hidden = false;
@@ -50,7 +50,7 @@ function SettingPopover(props) {
                                     return o;
                                 }));
                             }
-                        }, children: LANGUAGE.ALL }) }), (0, jsx_runtime_1.jsx)(antd_1.Button, { onClick: () => onReset(), type: "link", size: "small", children: LANGUAGE.RESET })] }), placement: "topRight", trigger: ['click'], content: (0, jsx_runtime_1.jsx)(antd_1.Tree, { className: "plus-table-popover-tree", checkedKeys: checkedKeys, blockNode: true, checkable: true, draggable: true, onDrop: ({ node }) => {
+                        } }, { children: LANGUAGE.ALL })) }), (0, jsx_runtime_1.jsx)(antd_1.Button, { onClick: () => onReset(), type: "link", size: "small", children: LANGUAGE.RESET })] })), placement: "topRight", trigger: ['click'], content: (0, jsx_runtime_1.jsx)(antd_1.Tree, { className: "plus-table-popover-tree", checkedKeys: checkedKeys, blockNode: true, checkable: true, draggable: true, onDrop: ({ node }) => {
                 targetKey.current = node;
             }, onCheck: (x, { node }) => {
                 const find = columns.find((o) => o.dataIndex === node.key);
@@ -74,6 +74,6 @@ function SettingPopover(props) {
                 .map((o) => ({
                 title: o.title,
                 key: o.dataIndex,
-            })) }), children: (0, jsx_runtime_1.jsx)(antd_1.Tooltip, { title: LANGUAGE.SETTING, children: (0, jsx_runtime_1.jsx)(antd_1.Button, { icon: (0, jsx_runtime_1.jsx)(icons_1.SettingOutlined, {}) }) }) }));
+            })) }) }, { children: (0, jsx_runtime_1.jsx)(antd_1.Tooltip, Object.assign({ title: LANGUAGE.SETTING }, { children: (0, jsx_runtime_1.jsx)(antd_1.Button, { icon: (0, jsx_runtime_1.jsx)(icons_1.SettingOutlined, {}) }) })) })));
 }
 exports.SettingPopover = SettingPopover;
