@@ -135,7 +135,7 @@ export function SettingPopover<T extends {} = {}>(
   );
 }
 
-export interface SettingPopoverProps<T> {
+export interface SettingPopoverProps<T extends {} = {}> {
   columns: PlusColumnsType<T>;
   onChange: (newColumns: any[]) => void;
   onReset: () => void;

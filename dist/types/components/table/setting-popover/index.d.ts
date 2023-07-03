@@ -26,7 +26,7 @@ import { PlusColumnsType } from '../types';
  * @constructor
  */
 export declare function SettingPopover<T extends {} = {}>(props: SettingPopoverProps<T>): JSX.Element;
-export interface SettingPopoverProps<T> {
+export interface SettingPopoverProps<T extends {} = {}> {
     columns: PlusColumnsType<T>;
     onChange: (newColumns: any[]) => void;
     onReset: () => void;

@@ -39,15 +39,15 @@ export declare class ColumnUtils {
      * @param allProperties
      * @param language
      */
-    static setTitles<T>(columns: PlusColumnsType<T>, allProperties: Map<PropertyKey, PropertyMirror>, language: keyof typeof locales): PlusColumnsType<T>;
+    static setTitles<T extends {} = {}>(columns: PlusColumnsType<T>, allProperties: Map<PropertyKey, PropertyMirror>, language: keyof typeof locales): PlusColumnsType<T>;
     /**
      * 过滤隐藏列
      * @param columns
      */
-    static filter<T>(columns?: PlusColumnsType<T>): PlusColumnType<T>[];
+    static filter<T extends {} = {}>(columns?: PlusColumnsType<T>): PlusColumnType<T>[];
     /**
      * 获取已选中列
      * @param columns
      */
-    static getCheckedKeys<T>(columns?: PlusColumnsType<T>): any[];
+    static getCheckedKeys<T extends {} = {}>(columns?: PlusColumnsType<T>): any[];
 }

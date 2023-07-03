@@ -38,11 +38,16 @@ const _PlusForm = (0, react_1.forwardRef)((props, ref) => {
     const { model, onFinish, onBeforeRequest, onResponse, onSuccess, onFail, className } = props, rest = __rest(props, ["model", "onFinish", "onBeforeRequest", "onResponse", "onSuccess", "onFail", "className"]);
     const mirrors = (0, react_1.useMemo)(() => class_mirror_1.ClassMirror.reflect(model).getAllProperties(), [model]);
     const { http, transformer } = (0, react_1.useContext)(provider_1.PlusContext);
+    const fetchState = (0, react_1.useRef)(false);
     return ((0, jsx_runtime_1.jsx)(exports.PlusFormContext.Provider, Object.assign({ value: mirrors }, { children: (0, jsx_runtime_1.jsx)(antd_1.Form, Object.assign({ ref: ref, autoComplete: "off", autoCapitalize: "off", autoCorrect: "off", autoSave: "off", className: (0, classnames_1.default)('mq-plus-form', className), onFinish: (value) => __awaiter(void 0, void 0, void 0, function* () {
                 if (onFinish) {
                     return onFinish(value);
                 }
                 try {
+                    if (fetchState.current) {
+                        return;
+                    }
+                    fetchState.current = true;
                     if (onBeforeRequest) {
                         yield onBeforeRequest(value);
                     }
@@ -55,8 +60,10 @@ const _PlusForm = (0, react_1.forwardRef)((props, ref) => {
                             yield onResponse(res, value);
                         }
                     }
+                    fetchState.current = false;
                 }
                 catch (e) {
+                    fetchState.current = false;
                     if (e instanceof class_transformer_1.TransformerException) {
                         const error = e.exceptions[0];
                         if (error) {

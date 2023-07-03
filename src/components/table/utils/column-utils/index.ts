@@ -58,7 +58,7 @@ export class ColumnUtils {
    * @param allProperties
    * @param language
    */
-  public static setTitles<T>(
+  public static setTitles<T extends {} = {}>(
     columns: PlusColumnsType<T>,
     allProperties: Map<PropertyKey, PropertyMirror>,
     language: keyof typeof locales
@@ -95,7 +95,7 @@ export class ColumnUtils {
    * 过滤隐藏列
    * @param columns
    */
-  public static filter<T>(columns: PlusColumnsType<T> = []) {
+  public static filter<T extends {} = {}>(columns: PlusColumnsType<T> = []) {
     return columns.filter((x) => !x.hidden);
   }
 
@@ -103,7 +103,9 @@ export class ColumnUtils {
    * 获取已选中列
    * @param columns
    */
-  public static getCheckedKeys<T>(columns: PlusColumnsType<T> = []) {
+  public static getCheckedKeys<T extends {} = {}>(
+    columns: PlusColumnsType<T> = []
+  ) {
     const list: any[] = [];
     columns.forEach((x) => {
       if (!x.hidden) {

@@ -21,7 +21,7 @@
  */
 import cloneDeep from 'lodash.clonedeep';
 import React, { ReactNode, useMemo, useState } from 'react';
-import { Button, Card, Row, Space, Table, TableProps } from 'antd';
+import { Button, Card, CardProps, Row, Space, Table, TableProps } from 'antd';
 import { ClassConstructor } from '@quick-toolkit/class-mirror';
 import { ReloadOutlined } from '@ant-design/icons';
 
@@ -29,6 +29,8 @@ import { PlusColumnsType } from './types';
 import { SettingPopover } from './setting-popover';
 import { useColumns } from './use-columns';
 import { ColumnUtils } from './utils';
+import classNames from 'classnames';
+
 /**
  * Table component
  * @param props
@@ -39,6 +41,7 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
     model,
     columns = [],
     size,
+    cardProps,
     beforeTools,
     onReload,
     afterTools,
@@ -104,13 +107,21 @@ export function PlusTable<T extends {}>(props: PlusTableProps<T>) {
   );
 
   return React.createElement(noStyle ? 'div' : Card, {
-    className: 'plus-table',
-    loading: Boolean(rest.loading),
+    ...cardProps,
+    className: classNames(
+      'plus-table',
+      cardProps ? cardProps.className : undefined
+    ),
+    loading:
+      Boolean(cardProps && cardProps.loading) ||
+      Boolean(!rest.dataSource && rest.loading),
     children,
   });
 }
 
-export interface PlusTableProps<T> extends Omit<TableProps<T>, 'columns'> {
+export interface PlusTableProps<T extends {}>
+  extends Omit<TableProps<T>, 'columns'> {
+  cardProps?: Omit<CardProps, 'children'>;
   model: ClassConstructor<T>;
   columns?: PlusColumnsType<T>;
   beforeTools?: ReactNode;

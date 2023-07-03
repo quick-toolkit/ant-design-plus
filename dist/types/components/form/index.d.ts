@@ -28,7 +28,7 @@ import { ClassConstructor, MethodMirror, PropertyMirror } from '@quick-toolkit/c
 import { PlusFormItem } from '../form-item';
 import { PlusFormList } from '../form-list';
 export declare const PlusFormContext: React.Context<Map<PropertyKey, PropertyMirror<any> | MethodMirror<any, any>>>;
-export declare type PlusFormFC = React.FC<PlusFormProps> & {
+export type PlusFormFC = React.FC<PlusFormProps> & {
     Item: typeof PlusFormItem;
     Context: typeof PlusFormContext;
     List: typeof PlusFormList;

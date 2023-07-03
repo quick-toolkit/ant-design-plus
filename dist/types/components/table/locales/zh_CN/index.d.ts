@@ -26,4 +26,4 @@ export declare const zh_CN: {
     RESET: string;
     SETTING: string;
 };
-export declare type PlusTableLocale = typeof zh_CN;
+export type PlusTableLocale = typeof zh_CN;

@@ -66,4 +66,4 @@ export interface PlusColumnType<T extends {} = {}> {
     ellipsis?: CellEllipsisType;
     align?: AlignType;
 }
-export declare type PlusColumnsType<T extends {} = {}> = PlusColumnType<T>[];
+export type PlusColumnsType<T extends {} = {}> = PlusColumnType<T>[];

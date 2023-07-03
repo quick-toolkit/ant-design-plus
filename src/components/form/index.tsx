@@ -22,7 +22,13 @@
  * SOFTWARE.
  */
 
-import React, { createContext, forwardRef, useContext, useMemo } from 'react';
+import React, {
+  createContext,
+  forwardRef,
+  useContext,
+  useMemo,
+  useRef,
+} from 'react';
 import { Form, FormInstance, FormProps, notification } from 'antd';
 import { AxiosError, AxiosResponse } from 'axios';
 import {
@@ -54,6 +60,7 @@ const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
     [model]
   );
   const { http, transformer } = useContext(PlusContext);
+  const fetchState = useRef(false);
   return (
     <PlusFormContext.Provider value={mirrors}>
       <Form
@@ -68,6 +75,10 @@ const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
             return onFinish(value);
           }
           try {
+            if (fetchState.current) {
+              return;
+            }
+            fetchState.current = true;
             if (onBeforeRequest) {
               await onBeforeRequest(value);
             }
@@ -80,7 +91,9 @@ const _PlusForm = forwardRef<FormInstance, PlusFormProps>((props, ref) => {
                 await onResponse(res, value);
               }
             }
+            fetchState.current = false;
           } catch (e) {
+            fetchState.current = false;
             if (e instanceof TransformerException) {
               const error = e.exceptions[0];
               if (error) {
